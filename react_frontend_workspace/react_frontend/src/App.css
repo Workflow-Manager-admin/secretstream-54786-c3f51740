@@ -1,108 +1,142 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --base-light: #ff4081;        /* Accent */
+  --base-dark: #1976d2;         /* Primary */
+  --background: #f5f5f5;
+  --primary: #1976d2;
+  --secondary: #757575;
+  --text-color: #1a1a1a;        /* Main text */
+  --text-secondary: #757575;
+  --border-color: rgba(60,70,120,0.11);
+  --card-bg: #fff;
+  --card-shadow: 0 1px 4px 0 rgba(30,30,60,0.07);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  background-color: var(--background);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--background);
+  color: var(--text-color);
 }
 
+/* Navbar */
 .navbar {
-  background-color: var(--base-dark);
-  padding: 16px;
+  background: var(--primary);
+  padding: 18px 0 15px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
+  justify-content: center;
+  border-bottom: 1.5px solid var(--border-color);
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
   z-index: 100;
+  color: #fff;
+  font-size: 1.22rem;
 }
-
 .logo {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
+  letter-spacing: 0.03em;
+  color: #fff;
 }
-
 .logo-symbol {
   color: var(--base-light);
+  font-size: 1.22em;
+  font-weight: 700;
 }
 
+/* Container and layout */
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 16px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 30px;
 }
 
-.hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
-  text-align: center;
+/* Card for secrets and form */
+.card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 28px 22px;
+  box-shadow: var(--card-shadow);
+  border: 1.3px solid var(--border-color);
+  margin-bottom: 18px;
+  color: inherit;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+/* Secret feed */
+.secret-feed {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
-.subtitle {
-  color: var(--base-light);
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-.title {
-  font-size: 3.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.description {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 16px;
-}
-
+/* Button styles */
 .btn {
   background-color: var(--base-light);
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 5px;
+  padding: 10px 18px;
+  font-size: 1.07em;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background .2s;
+  box-shadow: 0 1px 3px 0 rgba(30,30,60,0.10);
+  outline: none;
+  letter-spacing: 0.03em;
 }
-
-.btn:hover {
-  background-color: #7691ff;
+.btn:hover,
+.btn:focus {
+  background-color: #e73370;
 }
-
 .btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+  padding: 12px 26px;
+  font-size: 1.14em;
 }
+
+input,
+textarea {
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 1.06rem;
+  background: #fafcff;
+  color: var(--text-color);
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid var(--base-light);
+  border-color: var(--base-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 7px;
+  }
+  .navbar {
+    font-size: 1rem;
+    padding: 13px 0;
+  }
+}
+
