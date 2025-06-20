@@ -31,7 +31,7 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        setSecrets(data.secrets || data); // Support both `{ secrets: [...] }` and `[ ... ]`
+        setSecrets(Array.isArray(data) ? data : []); // Backend returns array of {id, text}
         setFeedLoading(false);
       })
       .catch((err) => {
@@ -53,7 +53,7 @@ function App() {
       const res = await fetch(`${API_BASE}/secrets`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ secret: secretText }),
+        body: JSON.stringify({ text: secretText }), // Expect 'text'
       });
       if (!res.ok) throw new Error('Failed to submit secret');
       setSecretText('');
@@ -214,7 +214,7 @@ function SecretCard({ secret }) {
       }}
     >
       <div style={{ color: "#232323", fontSize: "1.11rem", marginBottom: 6, wordBreak: "break-word", lineHeight: 1.54 }}>
-        {secret.secret || String(secret)}
+        {secret.text || secret.secret || String(secret)}
       </div>
       {/* (Optional) Created at */}
       <div style={{
