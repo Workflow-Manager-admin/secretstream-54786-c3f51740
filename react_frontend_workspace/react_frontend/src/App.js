@@ -19,7 +19,12 @@ function App() {
   const [feedError, setFeedError] = useState(null);
 
   // Backend API base (should match backend config; assumes CORS enabled)
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+  // Use Create React App convention: variables must be prefixed with REACT_APP_
+  // Avoid unconditional usage of process
+  const API_BASE =
+    (typeof process !== "undefined" && process.env && process.env.REACT_APP_API_URL)
+      ? process.env.REACT_APP_API_URL
+      : (window.REACT_APP_API_URL || 'http://localhost:3001');
 
   // Load secrets feed on mount
   useEffect(() => {
