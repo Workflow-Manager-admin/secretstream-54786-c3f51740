@@ -90,3 +90,131 @@ cached modules 1.26 MiB [cached] 41 modules
 runtime modules 27.5 KiB 14 modules
 ./src/App.js 11.2 KiB [built] [code generated]
 webpack 5.99.9 compiled successfully in 96 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.4 MiB
+  asset bundle.js 1.39 MiB [emitted] (name: main)
+  asset main.60ba337539ceb5f687ad.hot-update.js 10.5 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.60ba337539ceb5f687ad.hot-update.json 97 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.4 MiB = bundle.js 1.39 MiB main.60ba337539ceb5f687ad.hot-update.js 10.5 KiB
+cached modules 1.26 MiB [cached] 38 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 569 bytes
+  ./src/index.js 530 bytes [code generated]
+  ./src/App.js 39 bytes [built] [code generated] [1 error]
+
+ERROR in ./src/App.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/src/App.js: Unexpected token (27:6)
+
+  25 |     (typeof process !== "undefined" && process.env && process.env.REACT_APP_API_URL)
+  26 |       ? process.env.REACT_APP_API_URLhttps://vscode-internal-9853-dev.dev01.cloud.kavia.ai:3001/docs
+> 27 |       : (window.REACT_APP_API_URL || 'http://localhost:3001');
+     |       ^
+  28 |
+  29 |   // Load secrets feed on mount
+  30 |   useEffect(() => {
+    at constructor (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:363:19)
+    at JSXParserMixin.raise (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:6609:19)
+    at JSXParserMixin.unexpected (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:6629:16)
+    at JSXParserMixin.parseExprAtom (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:11378:16)
+    at JSXParserMixin.parseExprAtom (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:4776:20)
+    at JSXParserMixin.parseExprSubscripts (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:11012:23)
+    at JSXParserMixin.parseUpdate (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10997:21)
+    at JSXParserMixin.parseMaybeUnary (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10977:23)
+    at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10830:61)
+    at JSXParserMixin.parseExprOps (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10835:23)
+    at JSXParserMixin.parseMaybeConditional (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10812:23)
+    at JSXParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10765:21)
+    at JSXParserMixin.parseConditional (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10824:29)
+    at JSXParserMixin.parseMaybeConditional (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10816:17)
+    at JSXParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10765:21)
+    at /home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10734:39
+    at JSXParserMixin.allowInAnd (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12356:16)
+    at JSXParserMixin.parseMaybeAssignAllowIn (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:10734:17)
+    at JSXParserMixin.parseVar (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13303:91)
+    at JSXParserMixin.parseVarStatement (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13149:10)
+    at JSXParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12770:23)
+    at JSXParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12685:17)
+    at JSXParserMixin.parseStatementListItem (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12665:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13235:61)
+    at JSXParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13228:10)
+    at JSXParserMixin.parseBlock (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13216:10)
+    at JSXParserMixin.parseFunctionBody (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12035:24)
+    at JSXParserMixin.parseFunctionBodyAndFinish (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12021:10)
+    at /home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13360:12
+    at JSXParserMixin.withSmartMixTopicForbiddingContext (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12338:14)
+    at JSXParserMixin.parseFunction (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13359:10)
+    at JSXParserMixin.parseFunctionStatement (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13044:17)
+    at JSXParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12709:21)
+    at JSXParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12685:17)
+    at JSXParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12662:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13235:36)
+    at JSXParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:13228:10)
+    at JSXParserMixin.parseProgram (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12541:10)
+    at JSXParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:12531:25)
+    at JSXParserMixin.parse (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:14410:10)
+    at parse (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/parser/lib/index.js:14444:38)
+    at parser (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend/node_modules/gensync/index.js:261:32)
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 32 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.43 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.38ff315c9377e6230d5d.hot-update.js 27.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.38ff315c9377e6230d5d.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.43 MiB = bundle.js 1.4 MiB main.38ff315c9377e6230d5d.hot-update.js 27.1 KiB
+cached modules 1.26 MiB [cached] 40 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 11.7 KiB
+  ./src/index.js 530 bytes [code generated]
+  ./src/App.js 11.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 66 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.42 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.0add615527ae7aad5fd4.hot-update.js 15.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.0add615527ae7aad5fd4.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.42 MiB = bundle.js 1.4 MiB main.0add615527ae7aad5fd4.hot-update.js 15.1 KiB
+cached modules 1.26 MiB [cached] 41 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 11.1 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 48 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.42 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.290cbfec8c26cdff0b40.hot-update.js 15.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.290cbfec8c26cdff0b40.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.42 MiB = bundle.js 1.4 MiB main.290cbfec8c26cdff0b40.hot-update.js 15.1 KiB
+cached modules 1.26 MiB [cached] 41 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 11.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 65 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.42 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.7deebb62e7dc720d5e3d.hot-update.js 15.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.7deebb62e7dc720d5e3d.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.42 MiB = bundle.js 1.4 MiB main.7deebb62e7dc720d5e3d.hot-update.js 15.1 KiB
+cached modules 1.26 MiB [cached] 41 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 11.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 52 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.42 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.c24f02abd7fa353a2a5f.hot-update.js 15.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.c24f02abd7fa353a2a5f.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.42 MiB = bundle.js 1.4 MiB main.c24f02abd7fa353a2a5f.hot-update.js 15.1 KiB
+cached modules 1.26 MiB [cached] 41 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 11.2 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 42 ms

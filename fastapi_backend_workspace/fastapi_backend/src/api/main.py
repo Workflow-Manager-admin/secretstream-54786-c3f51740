@@ -28,8 +28,7 @@ app = FastAPI(
     title="SecretStream API",
     description=(
         "An API to anonymously share and view secrets. "
-        "Allows submission and retrieval of secret texts "
-        "without authentication."
+        "Allows submission and retrieval of secret texts without authentication."
     ),
     version="1.0.0",
     openapi_tags=[
@@ -75,7 +74,7 @@ class SecretOut(BaseModel):
     )
 
 
-MAX_SECRETS = 1000   # For efficiency, limit to most recent 1000 secrets
+MAX_SECRETS = 1000  # For efficiency, limit to most recent 1000 secrets
 
 
 def get_db():
@@ -135,6 +134,7 @@ def submit_secret(secret_in: SecretIn, db: Session = Depends(get_db)):
         text=secret.text
     )
 
+
 # PUBLIC_INTERFACE
 @app.get(
     "/secrets",
@@ -171,3 +171,47 @@ def get_secrets(limit: int = 20, db: Session = Depends(get_db)):
         )
         for secret in secrets
     ]
+
+
+# PUBLIC_INTERFACE
+@app.get(
+    "/secrets/{id}",
+    response_model=SecretOut,
+    summary="Retrieve a secret by ID (for shareable link)",
+    description=(
+        "Retrieves a secret by its unique ID. "
+        "This is useful for direct/shareable links to individual secrets. "
+        "Returns a 404 error if the secret ID does not exist."
+    ),
+    responses={
+        200: {"description": "The secret with the specified ID."},
+        404: {"description": "Secret not found."},
+        422: {"description": "Validation error (e.g., invalid ID format)."},
+    },
+    tags=["secrets"],
+    response_description="A specific secret submitted anonymously.",
+)
+def get_secret_by_id(id: int, db: Session = Depends(get_db)):
+    """
+    Get a single secret by its ID.
+
+    Args:
+        id (int): The unique ID of the secret to fetch (from the URL path).
+        db (Session): Database session (automatically injected).
+
+    Returns:
+        SecretOut: The secret if found.
+
+    Raises:
+        HTTPException: 404 if not found, 422 if ID is invalid.
+    """
+    secret = db.query(SecretModel).filter(SecretModel.id == id).first()
+    if not secret:
+        raise HTTPException(
+            status_code=404,
+            detail="Secret not found for the given ID."
+        )
+    return SecretOut(
+        id=secret.id,
+        text=secret.text
+    )

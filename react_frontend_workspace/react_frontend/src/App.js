@@ -24,8 +24,7 @@ function App() {
   const API_BASE =
     (typeof process !== "undefined" && process.env && process.env.REACT_APP_API_URL)
       ? process.env.REACT_APP_API_URL
-      : (window.REACT_APP_API_URL || 'http://localhost:3001');
-
+      : (window.REACT_APP_API_URL || 'https://vscode-internal-9853-dev.dev01.cloud.kavia.ai:3001');
   // Load secrets feed on mount
   useEffect(() => {
     setFeedLoading(true);
