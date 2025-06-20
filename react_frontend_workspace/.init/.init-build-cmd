@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/secretstream-54786-c3f51740/react_frontend_workspace/react_frontend"
+}
