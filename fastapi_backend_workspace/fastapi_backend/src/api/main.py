@@ -1,8 +1,28 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List
-from threading import Lock
+from sqlalchemy import create_engine, Column, Integer, String, desc
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, Session, scoped_session
+
+# Database setup
+DATABASE_URL = "sqlite:///./secrets.db"
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+Base = declarative_base()
+SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+
+
+class SecretModel(Base):
+    __tablename__ = "secrets"
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    text = Column(String(1000), nullable=False, index=True)
+
+
+# Create secrets table if it doesn't exist
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="SecretStream API",
@@ -55,10 +75,15 @@ class SecretOut(BaseModel):
     )
 
 
-# In-memory storage for secrets (list of dicts).
-SECRETS = []
-SECRETS_LOCK = Lock()
 MAX_SECRETS = 1000   # For efficiency, limit to most recent 1000 secrets
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 # PUBLIC_INTERFACE
@@ -82,20 +107,33 @@ def health_check():
     tags=["secrets"],
     response_description="The saved secret.",
 )
-def submit_secret(secret_in: SecretIn):
+def submit_secret(secret_in: SecretIn, db: Session = Depends(get_db)):
     """
-    Receives a secret (text) and adds it to the in-memory store. Returns the saved secret with a generated ID.
+    Receives a secret (text) and adds it to the database. Returns the saved secret with a generated ID.
     """
-    with SECRETS_LOCK:
-        secret_id = len(SECRETS) + 1
-        secret = {"id": secret_id, "text": secret_in.text}
-        SECRETS.append(secret)
-        # Maintain recent MAX_SECRETS only (for memory efficiency)
-        if len(SECRETS) > MAX_SECRETS:
-            SECRETS.pop(0)
+    # Enforce the recent MAX_SECRETS constraint (remove oldest if over limit)
+    count = db.query(SecretModel).count()
+    if count >= MAX_SECRETS:
+        # Delete the oldest secret(s) if the limit is reached
+        oldest_count = count - MAX_SECRETS + 1
+        oldest = (
+            db.query(SecretModel)
+            .order_by(SecretModel.id.asc())
+            .limit(oldest_count)
+            .all()
+        )
+        for s in oldest:
+            db.delete(s)
+        db.commit()
 
-    return secret
-
+    secret = SecretModel(text=secret_in.text)
+    db.add(secret)
+    db.commit()
+    db.refresh(secret)
+    return SecretOut(
+        id=secret.id,
+        text=secret.text
+    )
 
 # PUBLIC_INTERFACE
 @app.get(
@@ -109,9 +147,10 @@ def submit_secret(secret_in: SecretIn):
     tags=["secrets"],
     response_description="A list of secrets submitted anonymously.",
 )
-def get_secrets(limit: int = 20):
+def get_secrets(limit: int = 20, db: Session = Depends(get_db)):
     """
-    Retrieves the most recent N secrets, up to the provided limit (default: 20, max: 100).
+    Retrieves the most recent N secrets from the database, up to the provided limit
+    (default: 20, max: 100).
     """
     if not isinstance(limit, int) or limit < 1:
         raise HTTPException(
@@ -119,11 +158,16 @@ def get_secrets(limit: int = 20):
             detail="Limit must be a positive integer."
         )
     capped_limit = min(limit, 100)
-    with SECRETS_LOCK:
-        # Get the most recent secrets (newest last)
-        start_index = max(len(SECRETS) - capped_limit, 0)
-        selected = SECRETS[start_index:]
-        # Return newest first
-        return list(
-            reversed(selected)
+    secrets = (
+        db.query(SecretModel)
+        .order_by(desc(SecretModel.id))
+        .limit(capped_limit)
+        .all()
+    )
+    return [
+        SecretOut(
+            id=secret.id,
+            text=secret.text,
         )
+        for secret in secrets
+    ]
